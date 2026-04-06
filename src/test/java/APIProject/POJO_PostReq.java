@@ -9,7 +9,7 @@ public class POJO_PostReq {
     String status;
     String[] roles;
     String createdAt;
-    POJO_PostReq_Address address;
+    POJO_PostReq_Address[] addresses;
 
     public String getId() {
         return id;
@@ -74,12 +74,10 @@ public class POJO_PostReq {
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
-
-    public POJO_PostReq_Address getAddress() {
-        return address;
+    public POJO_PostReq_Address[] getAddresses() {
+        return addresses;
     }
-
-    public void setAddress(POJO_PostReq_Address address) {
-        this.address = address;
+    public void setAddresses(POJO_PostReq_Address[] addresses) {
+        this.addresses = addresses;
     }
 }
