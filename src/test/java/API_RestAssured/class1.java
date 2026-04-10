@@ -6,9 +6,17 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONTokener;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.time.Instant;
+import java.util.Objects;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import static io.restassured.RestAssured.*;
 
@@ -66,7 +74,7 @@ public class class1 {
 
     //POST req using Org.JSON class
     @Test
-    public void postUserWithOrgJSON(){
+    public void postReqWithOrgJSON(){
         JSONObject info = new JSONObject();
         info.put("id","ord-3003");
         info.put("userId","usr-1003");
@@ -107,5 +115,53 @@ public class class1 {
         System.out.println("Status Code is "+res.getStatusCode());
         System.out.println("Data passed is :");
         System.out.println(res.asString());
+    }
+    //POST request using existing JSON file
+    @Test
+    public void postReqUsingExistingJSON() throws FileNotFoundException {
+        File f = new File("../API_RestAssured/Body.json");
+        FileReader fr = new FileReader(f);
+        JSONTokener jt = new JSONTokener(fr);
+        JSONObject jo = new JSONObject(jt);
+        Response res =
+                given()
+                        .contentType(ContentType.JSON)
+                        .body(jo.toString())
+                        .when()
+                        .post("http://localhost:3000/transactions");
+        System.out.println("Status code : "+ res.getStatusCode());
+        System.out.println("Data Posted: ");
+        System.out.println(res.asString());
+    }
+    // POST req using existing JSON file with JSON Variables
+    @Test(dataProvider = "dp")
+    public void postReqUsingExistingJSONWithVariables(String prd_id,String prd_name,String prd_category,String prd_price) throws FileNotFoundException {
+        File f = new File("../API_RestAssured/JSONVariables.json");
+        FileReader fr = new FileReader(f);
+        JSONTokener jt = new JSONTokener(fr);
+        JSONObject jo = new JSONObject(jt);
+
+        String Data = jo.toString();
+        Data = Data.replaceAll("prd_ID",prd_id);
+        Data = Data.replaceAll("prd_name",prd_name);
+        Data = Data.replaceAll("prd_category",prd_category);
+        Data = Data.replaceAll("prd_price",prd_price);
+
+        Response res =
+                given()
+                        .contentType(ContentType.JSON)
+                        .body(Data)
+                        .when()
+                        .post("http://localhost:3000/products");
+        System.out.println("Status code : "+ res.getStatusCode());
+        System.out.println("Data Posted: ");
+        System.out.println(res.asString());
+    }
+    @DataProvider(name="dp")
+    public Object[][] getData(){
+        return new Object[][] {
+//                {"prd-2003","Adidas Running Shoes","Fashion","5590"},
+                {"prd-2004","Reebok","Fashion","3550"}
+        };
     }
 }

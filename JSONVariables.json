@@ -1,0 +1,16 @@
+{
+  "id": "prd_ID",
+  "name": "prd_name",
+  "category": "prd_category",
+  "price": "prd_price",
+  "currency": "INR",
+  "inventory": {
+    "available": 40,
+    "reserved": 5
+  },
+  "tags": [
+    "shoes",
+    "sports"
+  ],
+  "rating": 4.5
+}
