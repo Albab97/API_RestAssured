@@ -13,7 +13,7 @@ public class class4 {
     // Using GitHub API as an example
     @Test
     public void APIChainingDemo(){
-        String token = "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";
+        String token = "<GET_TOKEN_FROM_GITHUB>";
         String owner = "Albab97";
 
         // Step 1 - Create Repo from Post request
