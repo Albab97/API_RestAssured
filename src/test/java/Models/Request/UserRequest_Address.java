@@ -1,6 +1,6 @@
-package APIProject;
+package Models.Request;
 
-public class POJO_PostReq_Address {
+public class UserRequest_Address {
     String id;
     String type;
     String city;

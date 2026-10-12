@@ -1,7 +1,7 @@
 package API_RestAssured;
 
-import APIProject.POJO_PostReq;
-import APIProject.POJO_PostReq_Address;
+import Models.Request.UserRequest;
+import Models.Request.UserRequest_Address;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.json.JSONArray;
@@ -14,9 +14,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.time.Instant;
-import java.util.Objects;
-import java.util.Scanner;
-import java.util.regex.Pattern;
 
 import static io.restassured.RestAssured.*;
 
@@ -38,7 +35,7 @@ public class class1 {
     // Post request using POJO class.
     @Test
     public void postUser(){
-        POJO_PostReq data = new POJO_PostReq();
+        UserRequest data = new UserRequest();
         data.setId("usr-1003");
         data.setFirstName("Alex");
         data.setLastName("Carrey");
@@ -49,8 +46,8 @@ public class class1 {
         data.setRoles(roles);
         data.setCreatedAt(Instant.now().toString());
 
-        POJO_PostReq_Address[] addresses = new POJO_PostReq_Address[1];
-        addresses[0] = new POJO_PostReq_Address();
+        UserRequest_Address[] addresses = new UserRequest_Address[1];
+        addresses[0] = new UserRequest_Address();
         addresses[0].setId("addr-2");
         addresses[0].setType("HOME");
         addresses[0].setCity("Noida");

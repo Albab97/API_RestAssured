@@ -1,6 +1,10 @@
-package APIProject;
+package Models.Response;
 
-public class POJO_PostReq {
+import Models.Request.UserRequest_Address;
+
+import java.util.Arrays;
+
+public class UserResponse {
     String id;
     String firstName;
     String lastName;
@@ -9,7 +13,34 @@ public class POJO_PostReq {
     String status;
     String[] roles;
     String createdAt;
-    POJO_PostReq_Address[] addresses;
+    UserRequest_Address[] addresses;
+
+    public UserResponse(String id, String firstName, String lastName, String email, String phone, String status, String[] roles, String createdAt, UserRequest_Address[] addresses) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.status = status;
+        this.roles = roles;
+        this.createdAt = createdAt;
+        this.addresses = addresses;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", status='" + status + '\'' +
+                ", roles=" + Arrays.toString(roles) +
+                ", createdAt='" + createdAt + '\'' +
+                ", addresses=" + Arrays.toString(addresses) +
+                '}';
+    }
 
     public String getId() {
         return id;
@@ -74,10 +105,11 @@ public class POJO_PostReq {
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
-    public POJO_PostReq_Address[] getAddresses() {
+    public UserRequest_Address[] getAddresses() {
         return addresses;
     }
-    public void setAddresses(POJO_PostReq_Address[] addresses) {
+    public void setAddresses(UserRequest_Address[] addresses) {
         this.addresses = addresses;
     }
+
 }

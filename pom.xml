@@ -57,6 +57,7 @@
       <scope>compile</scope>
     </dependency>
     <!-- Source: https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+<!--    The below dependency helps in converting our POJO payload into JSON form and then toString() (SERIALIZATION) and vice versa (DESERIALIZATION) -->
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
